@@ -21,7 +21,7 @@ namespace UnitTests.BusinessLayer.UnitTests.Services
         {
             _lotRepositoryMock = new Mock<IRepository<Lot>>(MockBehavior.Strict);
             _saleSharesValidatorMock = new Mock<IValidator<SaleSharesDTO>>(MockBehavior.Strict);
-            _saleSharesValidatorMock.Setup(v => v.Validate(It.IsAny<SaleSharesDTO>())).Returns(new ValidationResult);
+            _saleSharesValidatorMock.Setup(v => v.Validate(It.IsAny<SaleSharesDTO>())).Returns(new ValidationResult());
             _lotService = new LotService(_lotRepositoryMock.Object, _saleSharesValidatorMock.Object);
         }
 

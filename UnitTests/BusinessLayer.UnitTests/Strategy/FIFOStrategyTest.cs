@@ -16,7 +16,6 @@ namespace UnitTests.BusinessLayer.UnitTests.Strategy
     [TestFixture]
     internal class FIFOStrategyTest
     {
-        private const int ValidSharesCount = 100;
         private const decimal ValidPricePerShare = 20;
         private ISharesSaleCalculationStrategy _strategy;
 

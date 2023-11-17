@@ -26,7 +26,7 @@ namespace BusinessLayer.Services
         public SaleSharesCalculationDTO SaleSharesCalculations(SaleSharesDTO saleSharesDTO)
         {
             ValidationResult validationResult = _validator.Validate(saleSharesDTO);
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
                 throw new ValidationException(validationResult.Errors);
             }
