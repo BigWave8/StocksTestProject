@@ -1,0 +1,65 @@
+﻿@page "/"
+@using BusinessLayer.DTOs;
+@using PresentationLayer.Controllers
+@inject LotController Controller
+
+<h1>Hello, User!</h1>
+<h1>Your data here:</h1>
+@if (Lots != null)
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Shares count</th>
+                <th>Price per share</th>
+                <th>Purchase date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var lot in Lots)
+            {
+                <tr>
+                    <th>@lot.SharesCount</th>
+                    <th>@lot.PricePerShare</th>
+                    <th>@lot.PurchaseDate</th>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<h1>Sale shares</h1>
+<form @onsubmit="CalculateSharesSale">
+    <Microsoft.AspNetCore.Components.Forms.InputNumber disabled="@true" @bind-Value="UserForm!.Id" />
+    <Microsoft.AspNetCore.Components.Forms.InputNumber @bind-Value="UserForm!.SharesCount" />
+    <Microsoft.AspNetCore.Components.Forms.InputNumber @bind-Value="UserForm!.PricePerShare" />
+    <Microsoft.AspNetCore.Components.Forms.InputDate disabled="@true"  @bind-Value="UserForm!.PurchaseDate" />
+    <button type="submit">Submit</button>
+</form>
+
+
+@if (SaleSharesCalculation != null)
+{
+    <h3> 1. The remaining number of shares after the sale: @SaleSharesCalculation.RemainingSharesCount</h3>
+    <h3> 2. The cost basis per share of the sold shares: @SaleSharesCalculation.CostBasisPerShareSold</h3>
+    <h3> 3. The cost basis per share of the remaining shares after the sale: @SaleSharesCalculation.CostBasisPerShareRemaining</h3>
+    <h3> 4. The total profit or loss of the sale: @SaleSharesCalculation.TotalProfitOrLoss</h3>
+}
+
+
+@code {
+    public List<LotDTO> Lots { get; set; }
+    public SaleSharesDTO? UserForm { get; set; }
+    public SaleSharesCalculationDTO? SaleSharesCalculation { get; set; }
+
+    protected override void OnInitialized()
+    {
+        UserForm ??= new();
+        Lots  = Controller.GetAll();
+    }
+
+    private void CalculateSharesSale()
+    {
+        SaleSharesCalculation = Controller.SaleSharesCalculations(UserForm);
+    }
+}
