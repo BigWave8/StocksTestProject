@@ -9,9 +9,6 @@ A program that calculates 4 important parameters for the user:
 The parameters depend on his current shares and calculation strategy. For simplicity, only the FIFO strategy is implemented.
 
 The program is built with 3 tier architecture:
-Presentation layer
-Business layer
-Data access layer
 
 ## Presentation layer:
 - Blazor was chosen for the presentation level. There are displays on web pages that interact with the user and take data from lower levels through Controllers.
