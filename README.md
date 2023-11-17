@@ -1,10 +1,10 @@
 # StocksTestProject
 
 A program that calculates 4 important parameters for the user:
-     1. The remaining number of shares after the sale
-     2. The cost basis per share of the sold shares
-     3. The cost basis per share of the remaining shares after the sale
-     4. The total profit or loss of the sale
+     - The remaining number of shares after the sale
+     - The cost basis per share of the sold shares
+     - The cost basis per share of the remaining shares after the sale
+     - The total profit or loss of the sale
 
 The parameters depend on his current shares and calculation strategy. For simplicity, only the FIFO strategy is implemented.
 
